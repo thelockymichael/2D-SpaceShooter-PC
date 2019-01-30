@@ -9,19 +9,21 @@ public class PauseMenuManager : MonoBehaviour
 {
     public GameObject PauseMenu;
 
+    public bool openMenu = false;
+
     public GameObject GameOverMenu;
 
     private UIFader UIFaderController;
 
     private float gameOverWait = 1.5f;
-   // private GameController gameController;
+    // private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
-       // UIFaderController = GetComponent<UIFader>();
+        // UIFaderController = GetComponent<UIFader>();
 
-       // GameObject UIFaderControllerObject = GameObject.FindWithTag("GameOverMenu");
+        // GameObject UIFaderControllerObject = GameObject.FindWithTag("GameOverMenu");
         //UIFaderController = UIFaderControllerObject.GetComponent<UIFader>();
 
         PauseMenu.SetActive(false);
@@ -77,12 +79,43 @@ public class PauseMenuManager : MonoBehaviour
         yield return new WaitForSeconds(gameOverWait);
         GameOverMenu.SetActive(true);
 
-        
+
         Time.timeScale = 0.0f;
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!openMenu)
+            {
+               
+                openMenu = true;
+                PauseMenu.SetActive(true);
+                Time.timeScale = 0.0f;
+                Debug.Log("Menu open");
+                //Pause();
+            }
+            else if (openMenu)
+            {
+                openMenu = false;
+                PauseMenu.SetActive(false);
+                Time.timeScale = 1.0f;
+                Debug.Log("Menu close");
+                //Resume();
+            }
+        }
     }
 }
+        /*
+        if (Input.GetKeyDown(KeyCode.Escape) && PauseMenu)
+        {
+            Pause();
+
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !PauseMenu)
+        {
+            Resume();
+        }*/
+    

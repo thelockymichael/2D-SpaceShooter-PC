@@ -37,10 +37,15 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    public void shootLaser()
     {
-        var InputDevice = InputManager.ActiveDevice;
-        if (InputDevice.Action1.WasPressed)
+     
+    }
+
+     void Update()
+    {
+      
+        if (Input.GetMouseButtonDown(0))
         {
             Debug.Log(audio);
             audio.Play();
@@ -48,13 +53,17 @@ public class PlayerController : MonoBehaviour
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
         }         
     }
+
+   
     // Update is called once per frame
     void FixedUpdate()
     {
-        var InputDevice = InputManager.ActiveDevice;
 
-        float moveHorizontal = InputDevice.LeftStickX;
-        float moveVertical = InputDevice.LeftStickY;
+      
+        
+
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        float moveVertical = Input.GetAxisRaw("Vertical");
 
         //float moveHorizontalPC = Input.GetAxis("Horizontal");
        // float moveVerticalPC = Input.GetAxis("Vertical");

@@ -27,6 +27,19 @@ public class MenuManager : MonoBehaviour
   
     }
 
+    void Update()
+    {
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     public void Play()
     {
         SceneManager.LoadScene("game");
@@ -36,9 +49,5 @@ public class MenuManager : MonoBehaviour
 
  
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
